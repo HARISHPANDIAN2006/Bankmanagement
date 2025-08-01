@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bank Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 6px;
+      margin: 5px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    #output {
+      white-space: pre-line;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bank Management System</h1>
+
+  <div class="section">
+    <h3>Create Account</h3>
+    <input type="text" id="accName" placeholder="Name">
+    <input type="text" id="accNumber" placeholder="Account Number">
+    <button onclick="createAccount()">Create</button>
+  </div>
+
+  <div class="section">
+    <h3>Deposit</h3>
+    <input type="number" id="depositAmount" placeholder="Amount">
+    <button onclick="deposit()">Deposit</button>
+  </div>
+
+  <div class="section">
+    <h3>Withdraw</h3>
+    <input type="number" id="withdrawAmount" placeholder="Amount">
+    <button onclick="withdraw()">Withdraw</button>
+  </div>
+
+  <div class="section">
+    <h3>Check Balance</h3>
+    <button onclick="showBalance()">Show Balance</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
