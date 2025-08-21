@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bank Management - HTML & CSS Demo</title>
+  <style>
+    /* Simple reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#eef2ff,#ffffff);color:#0f172a;padding:28px}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.08);overflow:hidden}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #eef2ff}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{font-size:18px}
+    .sub{font-size:13px;color:#64748b}
+
+    /* Grid */
+    .main{display:grid;grid-template-columns:310px 1fr;gap:24px;padding:24px}
+    nav{padding:18px;border-right:1px dashed #f1f5f9}
+    nav .menu{display:flex;flex-direction:column;gap:8px}
+    .nav-item{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:8px;color:#0f172a;text-decoration:none}
+    .nav-item:hover{background:#f8fafc}
+    .nav-item .badge{margin-left:auto;background:#eef2ff;color:#3730a3;padding:6px 8px;border-radius:999px;font-size:12px}
+
+    /* Account card */
+    .account-card{background:linear-gradient(180deg,#f8fafc,#fff);padding:14px;border-radius:12px;margin-bottom:14px;box-shadow:0 6px 18px rgba(99,102,241,0.06)}
+    .acct-top{display:flex;align-items:center;gap:12px}
+    .acct-amt{font-size:20px;font-weight:700}
+    .acct-type{font-size:13px;color:#475569}
+
+    /* Content panels */
+    .panel{background:#fff;padding:18px;border-radius:12px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+    /* Forms */
+    label{display:block;font-size:13px;color:#334155;margin-bottom:8px}
+    input[type=text],select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;background:#fbfdff}
+    .row{margin-bottom:12px}
+    button{background:#6366f1;color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .ghost{background:transparent;color:#0f172a;border:1px solid #e6eef8}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    table thead th{background:#f1f5f9;text-align:left;padding:10px;border-bottom:1px solid #eef2ff;font-size:13px}
+    table tbody td{padding:10px;border-bottom:1px dashed #f1f5f9;color:#0f172a;font-size:14px}
+
+    /* Responsive */
+    @media (max-width:900px){.main{grid-template-columns:1fr;}.nav-item .badge{display:none}}
+
+    /* CSS-only tabs (accounts / transfer / history) */
+    .tabs{display:flex;gap:8px;margin-bottom:12px}
+    .tabs a{padding:8px 12px;border-radius:10px;text-decoration:none;border:1px solid transparent;background:#f8fafc;color:#0f172a;font-weight:600}
+    .tabs a.active{background:linear-gradient(90deg,#6366f1,#06b6d4);color:#fff;border-color:transparent}
+
+    /* small utilities */
+    .muted{color:#64748b;font-size:13px}
+    .flex{display:flex;gap:12px;align-items:center}
+
+    /* decorative footer */
+    footer{padding:14px 24px;border-top:1px solid #eef2ff;background:linear-gradient(180deg,#fff,#fbfdff);font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">BM</div>
+        <div>
+          <h1>Bank Management</h1>
+          <div class="sub">Simple demo — HTML & CSS only</div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="muted">Hello, Harish</div>
+        <button class="ghost">Sign out</button>
+      </div>
+    </header>
+
+    <div class="main">
+      <nav>
+        <div class="account-card">
+          <div class="acct-top">
+            <div>
+              <div class="acct-amt">₹ 1,24,560.00</div>
+              <div class="acct-type">Savings Account • A/C: ****1234</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu">
+          <a href="#accounts" class="nav-item">🏦 Accounts <span class="badge">3</span></a>
+          <a href="#create" class="nav-item">➕ Create Account</a>
+          <a href="#transfer" class="nav-item">🔁 Transfer Funds</a>
+          <a href="#history" class="nav-item">📜 Transactions</a>
+          <a href="#settings" class="nav-item">⚙️ Settings</a>
+        </div>
+
+        <div style="margin-top:18px">
+          <div class="muted">Quick actions</div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button>New Transfer</button>
+            <button class="ghost">Export</button>
+          </div>
+        </div>
+      </nav>
+
+      <section style="padding:6px 0">
+        <!-- Tabs simulated by anchors (works without JS) -->
+        <div class="tabs">
+          <a href="#accounts" class="active">Accounts</a>
+          <a href="#transfer">Transfer</a>
+          <a href="#history">History</a>
+        </div>
+
+        <!-- ACCOUNTS PANEL -->
+        <div id="accounts" class="panel" style="margin-bottom:14px">
+          <h2 style="margin-bottom:8px">Your Accounts</h2>
+          <div class="grid-2">
+            <div class="panel" style="background:linear-gradient(180deg,#fff,#fbfdff);">
+              <div class="flex" style="justify-content:space-between">
+                <div>
+                  <div class="muted">Savings</div>
+                  <div style="font-weight:700;font-size:20px">₹ 92,430.00</div>
+                  <div class="muted">A/C: ****1234</div>
+                </div>
+                <div class="muted">Interest: 3.5% p.a.</div>
+              </div>
+            </div>
+
+            <div class="panel" style="background:linear-gradient(180deg,#fff,#fbfdff);">
+              <div class="flex" style="justify-content:space-between">
+                <div>
+                  <div class="muted">Current</div>
+                  <div style="font-weight:700;font-size:20px">₹ 32,130.00</div>
+                  <div class="muted">A/C: ****5678</div>
+                </div>
+                <div class="muted">Overdraft: ₹0</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <h3 class="muted" style="margin-bottom:8px">All accounts</h3>
+            <table>
+              <thead>
+                <tr><th>Type</th><th>A/C No</th><th>Balance</th><th>Branch</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Savings</td><td>****1234</td><td>₹ 92,430.00</td><td>Mumbai</td></tr>
+                <tr><td>Current</td><td>****5678</td><td>₹ 32,130.00</td><td>Hyderabad</td></tr>
+                <tr><td>Fixed Deposit</td><td>****9012</td><td>₹ 1,00,000.00</td><td>Bengaluru</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CREATE ACCOUNT PANEL -->
+        <div id="create" class="panel" style="margin-bottom:14px">
+          <h2 style="margin-bottom:12px">Create New Account</h2>
+          <form>
+            <div class="grid-2">
+              <div>
+                <label>Full name</label>
+                <input type="text" placeholder="e.g., Harish Pandian">
+              </div>
+              <div>
+                <label>Account type</label>
+                <select>
+                  <option>Savings</option>
+                  <option>Current</option>
+                  <option>Fixed Deposit</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Initial deposit</label>
+              <input type="text" placeholder="Amount in INR">
+            </div>
+
+            <div class="row">
+              <label>Branch</label>
+              <input type="text" placeholder="Branch location">
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <button>Create Account</button>
+              <button type="reset" class="ghost">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TRANSFER PANEL -->
+        <div id="transfer" class="panel" style="margin-bottom:14px">
+          <h2 style="margin-bottom:12px">Transfer Funds</h2>
+          <form>
+            <div class="grid-2">
+              <div>
+                <label>From Account</label>
+                <select>
+                  <option>Savings • ****1234</option>
+                  <option>Current • ****5678</option>
+                </select>
+              </div>
+              <div>
+                <label>To Account</label>
+                <input type="text" placeholder="Beneficiary A/C or IFSC">
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Amount</label>
+              <input type="text" placeholder="₹ 0.00">
+            </div>
+
+            <div class="row">
+              <label>Remarks</label>
+              <textarea rows="3" placeholder="Payment note (optional)"></textarea>
+            </div>
+
+            <div style="display:flex;gap:8px">
+              <button>Initiate Transfer</button>
+              <button class="ghost" type="reset">Clear</button>
+            </div>
+            <p class="muted" style="margin-top:8px">Note: This is a static demo — actual transfers need backend integration.</p>
+          </form>
+        </div>
+
+        <!-- HISTORY PANEL -->
+        <div id="history" class="panel">
+          <h2 style="margin-bottom:12px">Recent Transactions</h2>
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Description</th><th>Amount</th><th>Balance</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2025-08-20</td><td>Salary Credit</td><td>+₹ 50,000.00</td><td>₹ 1,10,000.00</td></tr>
+              <tr><td>2025-08-18</td><td>Grocery Store</td><td>-₹ 3,200.00</td><td>₹ 60,000.00</td></tr>
+              <tr><td>2025-08-15</td><td>Electricity Bill</td><td>-₹ 1,200.00</td><td>₹ 63,200.00</td></tr>
+              <tr><td>2025-08-10</td><td>Fixed Deposit Maturity</td><td>+₹ 1,00,000.00</td><td>₹ 64,400.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SETTINGS (small) -->
+        <div id="settings" class="panel" style="margin-top:12px">
+          <h2 style="margin-bottom:8px">Settings</h2>
+          <div class="row">
+            <label>Notification preferences</label>
+            <select>
+              <option>All notifications</option>
+              <option>Only critical</option>
+              <option>None</option>
+            </select>
+          </div>
+          <div class="row">
+            <label>Time zone</label>
+            <input type="text" value="Asia/Kolkata">
+          </div>
+          <div style="display:flex;gap:8px">
+            <button>Save</button>
+            <button class="ghost">Cancel</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <footer>
+      Bank Management Demo — static front-end only. Use with your own backend for production.
+    </footer>
+  </div>
+</body>
+</html>
